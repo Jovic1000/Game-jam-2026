@@ -68,7 +68,6 @@ public class ToiletController : MonoBehaviour
         _forwardEvent.Invoke();
 
         if (!IsGrounded()) return;
-        print("jump");
         _rigidbody.AddForce(_jumpForce * _jumpDirection.forward, ForceMode.Impulse);
     }
 
