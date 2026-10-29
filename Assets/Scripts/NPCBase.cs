@@ -15,6 +15,13 @@ public class NPCBase : MonoBehaviour
     [SerializeField] private float _runDistance;
 
 
+    /*public enum AIState
+    {
+        NONE,
+        IDLE,
+        SCARED
+    }*/
+    //[SerializeField] private AIState _aiState;
 
 
     public void SetTarget(Vector3 targetPosition)
@@ -36,7 +43,6 @@ public class NPCBase : MonoBehaviour
 
     public virtual void OnPlayerDetected(Collider player)
     {
-
         Vector3 runDirection = (transform.position - player.transform.position).normalized;
 
         SetTarget(transform.position + (runDirection * _runDistance));

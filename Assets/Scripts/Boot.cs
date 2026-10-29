@@ -24,9 +24,9 @@ public class Boot : MonoBehaviour
         #endregion
     }
 
-    public async void LoadSceneWithLoadingScene(string SceneToLoad)
+    public async void LoadSceneWithLoadingScene(string SceneToLoad, LoadSceneMode loadSceneMode = LoadSceneMode.Additive)
     {
-        await SceneManager.LoadSceneAsync(_loadingScreenName, LoadSceneMode.Additive);
+        await SceneManager.LoadSceneAsync(_loadingScreenName, loadSceneMode);
         var loadingScene = SceneManager.GetSceneByName(_loadingScreenName);
 
 
