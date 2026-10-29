@@ -1,7 +1,6 @@
-using UnityEditor.Search;
 using UnityEngine;
 
-public class PauseMenu : MonoBehaviour
+public class Menu : MonoBehaviour
 {
     [SerializeField] private GameObject pause_menu;
 
