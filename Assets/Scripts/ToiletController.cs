@@ -12,24 +12,29 @@ public class ToiletController : MonoBehaviour
     [SerializeField] private Transform _jumpDirection;
 
     [SerializeField] private float _turnSpeed = 10f;
-    [SerializeField] private float _lerpRatio = 0.5f;
+    [SerializeField] private float _lerpRatio = 0.05f;
+
+    [SerializeField] private float _resetRotationHeight = 3f;
 
     [SerializeField] private Rigidbody _rigidbody;
 
 
     [SerializeField] private InputActionReference _forwardEvent;
     [SerializeField] private InputActionReference _turnEvent;
+    [SerializeField] private InputActionReference _resetRotationEvent;
 
 
     private void HookInputs()
     {
-        _forwardEvent.action.performed += Move;
+        _forwardEvent.action.performed += Forward;
         //_turnEvent.action.performed += Turn;
+        _resetRotationEvent.action.performed += ResetRotation;
     }
     private void UnhookInputs()
     {
-        _forwardEvent.action.performed -= Move;
+        _forwardEvent.action.performed -= Forward;
         //_turnEvent.action.performed -= Turn;
+        _resetRotationEvent.action.performed -= ResetRotation;
     }
     private void OnEnable()
     {
@@ -42,9 +47,15 @@ public class ToiletController : MonoBehaviour
     }
 
 
-    private void Move(InputAction.CallbackContext context)
+    private void Forward(InputAction.CallbackContext context)
     {
         _rigidbody.AddForce(_jumpForce * _jumpDirection.forward, ForceMode.Impulse);
+    }
+
+    private void ResetRotation(InputAction.CallbackContext context)
+    {
+        transform.position += Vector3.up * _resetRotationHeight;
+        transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
     }
 
     private void Turn()
@@ -65,9 +76,11 @@ public class ToiletController : MonoBehaviour
 
         Quaternion desiredRotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
 
-        _rigidbody.MoveRotation(Quaternion.Lerp(_rigidbody.rotation, desiredRotation, _lerpRatio));
+        Quaternion deltaRotation = Quaternion.Lerp(_rigidbody.rotation, desiredRotation, _lerpRatio);
 
-        Debug.Log($"{desiredRotation} : {_rigidbody.rotation}");
+        _rigidbody.MoveRotation(deltaRotation);
+
+        Debug.Log($"{desiredRotation} : {_rigidbody.rotation} : {deltaRotation}");
         //print("hello world");
     }
 
@@ -81,7 +94,7 @@ public class ToiletController : MonoBehaviour
     void FixedUpdate()
     {
         Turn();
-        RotateTowardsUp();
+        //RotateTowardsUp();
     }
 
 
