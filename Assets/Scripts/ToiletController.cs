@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.Rendering;
 
-public class ToiletController : MonoBehaviour
+public partial class ToiletController : MonoBehaviour
 {
 
     [Header("Player Settings")]
@@ -64,7 +64,8 @@ public class ToiletController : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics.Raycast(_groundRaycast.position, _groundRaycast.forward, _groundRaycastLength);
+        //return Physics.Raycast(_groundRaycast.position, _groundRaycast.forward, _groundRaycastLength);
+        return Physics.Raycast(_groundRaycast.position, Vector3.down, _groundRaycastLength);
 
         //return _groundCollider.
     }
@@ -121,7 +122,7 @@ public class ToiletController : MonoBehaviour
     void FixedUpdate()
     {
         Turn();
-        RotateTowardsUp();
+        //RotateTowardsUp();
     }
 
 

@@ -1,11 +1,13 @@
 using UnityEditor.SceneManagement;
 using UnityEditor.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Boot : MonoBehaviour
 {
     static Boot _instance;
 
+    public string _loadingScreenName;
 
 
     async void Awake()
@@ -20,5 +22,13 @@ public class Boot : MonoBehaviour
         #region Loading
 
         #endregion
+    }
+
+    public async void LoadSceneWithLoadingScene(string SceneToLoad)
+    {
+        await SceneManager.LoadSceneAsync(_loadingScreenName, LoadSceneMode.Additive);
+        var loadingScene = SceneManager.GetSceneByName(_loadingScreenName);
+
+
     }
 }
