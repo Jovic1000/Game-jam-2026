@@ -7,7 +7,15 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_Name: HouseMaterial
+=======
+<<<<<<<< HEAD:Assets/Materials/BathMaterial.mat
+  m_Name: BathMaterial
+========
+  m_Name: HouseMaterial
+>>>>>>>> fd2adff (Added Terrain, Trees, all the houses are in, fixed some pathways, added a tunnel, and grass png):Assets/Materials/HouseMaterial.mat
+>>>>>>> fd2adff (Added Terrain, Trees, all the houses are in, fixed some pathways, added a tunnel, and grass png)
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -17,10 +25,14 @@ Material:
   m_InvalidKeywords: []
   m_LightmapFlags: 4
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_EnableInstancingVariants: 0
 =======
   m_EnableInstancingVariants: 1
 >>>>>>> origin/SBot
+=======
+  m_EnableInstancingVariants: 0
+>>>>>>> fd2adff (Added Terrain, Trees, all the houses are in, fixed some pathways, added a tunnel, and grass png)
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2000
   stringTagMap:
@@ -32,6 +44,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
+<<<<<<< HEAD
 <<<<<<< HEAD
         m_Texture: {fileID: 2800000, guid: 55055dcfb053f3945a502b749c227673, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -45,6 +58,13 @@ Material:
     - _BumpMap:
         m_Texture: {fileID: 2800000, guid: 5828af022f8ebe246bbad099c139b870, type: 3}
 >>>>>>> origin/SBot
+=======
+        m_Texture: {fileID: 2800000, guid: ea126bf392d9da2478f0a0135a93e415, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: 6312b034e66b28347abc0fcc53a847ae, type: 3}
+>>>>>>> fd2adff (Added Terrain, Trees, all the houses are in, fixed some pathways, added a tunnel, and grass png)
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -65,6 +85,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
 <<<<<<< HEAD
+<<<<<<< HEAD
         m_Texture: {fileID: 2800000, guid: 55055dcfb053f3945a502b749c227673, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -77,6 +98,13 @@ Material:
     - _MetallicGlossMap:
         m_Texture: {fileID: 2800000, guid: b0b6736d5a76dec42ae281ac78555a7e, type: 3}
 >>>>>>> origin/SBot
+=======
+        m_Texture: {fileID: 2800000, guid: ea126bf392d9da2478f0a0135a93e415, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 2800000, guid: dfa7ad510d01146428159b54941a5704, type: 3}
+>>>>>>> fd2adff (Added Terrain, Trees, all the houses are in, fixed some pathways, added a tunnel, and grass png)
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -111,10 +139,14 @@ Material:
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
     - _BumpScale: 1
 =======
     - _BumpScale: 2
 >>>>>>> origin/SBot
+=======
+    - _BumpScale: 1
+>>>>>>> fd2adff (Added Terrain, Trees, all the houses are in, fixed some pathways, added a tunnel, and grass png)
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
@@ -151,10 +183,14 @@ Material:
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!114 &5562544488972949607
 =======
 --- !u!114 &1806835661672973157
 >>>>>>> origin/SBot
+=======
+--- !u!114 &361145220326624240
+>>>>>>> fd2adff (Added Terrain, Trees, all the houses are in, fixed some pathways, added a tunnel, and grass png)
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
