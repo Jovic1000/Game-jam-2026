@@ -16,6 +16,7 @@ public class ToiletController : MonoBehaviour
 
     [SerializeField] private Rigidbody _rigidbody;
 
+
     [SerializeField] private InputActionReference _forwardEvent;
     [SerializeField] private InputActionReference _turnEvent;
 
@@ -61,15 +62,23 @@ public class ToiletController : MonoBehaviour
         //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, transform.eulerAngles.y, 0), _lerpRatio);
 
         // Add code to rotate towards upwards
+
+        Quaternion desiredRotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+
+        _rigidbody.MoveRotation(Quaternion.Lerp(_rigidbody.rotation, desiredRotation, _lerpRatio));
+
+        Debug.Log($"{desiredRotation} : {_rigidbody.rotation}");
+        //print("hello world");
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Turn();
         RotateTowardsUp();
