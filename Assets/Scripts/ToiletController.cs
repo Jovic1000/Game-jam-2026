@@ -45,6 +45,12 @@ public class ToiletController : MonoBehaviour
         //_turnInput.action.performed -= Turn;
         _resetRotationInput.action.performed -= ResetRotation;
     }
+
+    private void Awake()
+    {
+        Globals.SetCurrentPlayer(gameObject);
+    }
+
     private void OnEnable()
     {
         HookInputs();
