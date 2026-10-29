@@ -2,39 +2,48 @@ using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Animations;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.Rendering;
 
 public class ToiletController : MonoBehaviour
 {
+
+    [Header("Player Settings")]
     [SerializeField] private float _jumpForce = 8f;
     [SerializeField] private Transform _jumpDirection;
 
     [SerializeField] private float _turnSpeed = 10f;
-    [SerializeField] private float _lerpRatio = 0.05f;
+    [SerializeField] private float _lerpTime = 1f;
 
     [SerializeField] private float _resetRotationHeight = 3f;
 
     [SerializeField] private Rigidbody _rigidbody;
 
+    [SerializeField] private Transform _groundRaycast;
+    [SerializeField] private float _groundRaycastLength = 0.6f;
 
-    [SerializeField] private InputActionReference _forwardEvent;
-    [SerializeField] private InputActionReference _turnEvent;
-    [SerializeField] private InputActionReference _resetRotationEvent;
+    [SerializeField] private InputActionReference _forwardInput;
+    [SerializeField] private InputActionReference _turnInput;
+    [SerializeField] private InputActionReference _resetRotationInput;
 
+
+    [Header("Events")]
+    [SerializeField] private UnityEvent _forwardEvent;
+    [SerializeField] private UnityEvent _resetRotationEvent;
 
     private void HookInputs()
     {
-        _forwardEvent.action.performed += Forward;
-        //_turnEvent.action.performed += Turn;
-        _resetRotationEvent.action.performed += ResetRotation;
+        _forwardInput.action.performed += Forward;
+        //_turnInput.action.performed += Turn;
+        _resetRotationInput.action.performed += ResetRotation;
     }
     private void UnhookInputs()
     {
-        _forwardEvent.action.performed -= Forward;
-        //_turnEvent.action.performed -= Turn;
-        _resetRotationEvent.action.performed -= ResetRotation;
+        _forwardInput.action.performed -= Forward;
+        //_turnInput.action.performed -= Turn;
+        _resetRotationInput.action.performed -= ResetRotation;
     }
     private void OnEnable()
     {
@@ -47,13 +56,26 @@ public class ToiletController : MonoBehaviour
     }
 
 
+    private bool IsGrounded()
+    {
+        return Physics.Raycast(_groundRaycast.position, _groundRaycast.forward, _groundRaycastLength);
+
+        //return _groundCollider.
+    }
+
     private void Forward(InputAction.CallbackContext context)
     {
+        _forwardEvent.Invoke();
+
+        if (!IsGrounded()) return;
+        print("jump");
         _rigidbody.AddForce(_jumpForce * _jumpDirection.forward, ForceMode.Impulse);
     }
 
     private void ResetRotation(InputAction.CallbackContext context)
     {
+        _resetRotationEvent.Invoke();
+
         transform.position += Vector3.up * _resetRotationHeight;
         transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
     }
@@ -61,7 +83,7 @@ public class ToiletController : MonoBehaviour
     private void Turn()
     {
         //float value = context.ReadValue<float>();
-        float value = _turnEvent.action.ReadValue<float>();
+        float value = _turnInput.action.ReadValue<float>();
 
         float turnAmount = value * _turnSpeed * Time.deltaTime;
 
@@ -76,11 +98,11 @@ public class ToiletController : MonoBehaviour
 
         Quaternion desiredRotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
 
-        Quaternion deltaRotation = Quaternion.Lerp(_rigidbody.rotation, desiredRotation, _lerpRatio);
+        Quaternion deltaRotation = Quaternion.Lerp(_rigidbody.rotation, desiredRotation, _lerpTime * Time.fixedDeltaTime);
 
         _rigidbody.MoveRotation(deltaRotation);
 
-        Debug.Log($"{desiredRotation} : {_rigidbody.rotation} : {deltaRotation}");
+        //Debug.Log($"{desiredRotation} : {_rigidbody.rotation} : {deltaRotation}");
         //print("hello world");
     }
 
@@ -94,7 +116,7 @@ public class ToiletController : MonoBehaviour
     void FixedUpdate()
     {
         Turn();
-        //RotateTowardsUp();
+        RotateTowardsUp();
     }
 
 

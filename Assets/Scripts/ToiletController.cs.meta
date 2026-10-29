@@ -1,2 +1,17 @@
 fileFormatVersion: 2
 guid: 3db7c13f447f9e344a268a4850006764
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _jumpDirection: {instanceID: 0}
+  - _rigidbody: {instanceID: 0}
+  - _groundRaycast: {instanceID: 0}
+  - _forwardInput: {fileID: 2424205805285130785, guid: 6b4057318543ee74e90cb53d5322023f, type: 3}
+  - _turnInput: {fileID: -1722297612143311333, guid: 6b4057318543ee74e90cb53d5322023f, type: 3}
+  - _resetRotationInput: {fileID: -4569212181894817122, guid: 6b4057318543ee74e90cb53d5322023f, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
