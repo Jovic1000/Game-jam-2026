@@ -11,7 +11,7 @@ public partial class ToiletController : MonoBehaviour
 {
 
     [Header("Player Settings")]
-    [SerializeField] private float _jumpForce = 8f;
+    //[SerializeField] private float _jumpForce = 8f;
     [SerializeField] private Vector2 _jumpForceLimits = new Vector2(250f, 800f);
     [SerializeField] private float _jumpForceMaxTime = 1.4f;
     [SerializeField] private Transform _jumpDirection;
@@ -36,6 +36,10 @@ public partial class ToiletController : MonoBehaviour
     [SerializeField] private UnityEvent _turnEvent;
     [SerializeField] private UnityEvent _resetRotationEvent;
 
+    [SerializeField] private UnityEvent _turnStartEvent;
+    [SerializeField] private UnityEvent _turnEndEvent;
+
+
     private bool _forwardDown;
     private float _forwardDownTime;
 
@@ -48,6 +52,10 @@ public partial class ToiletController : MonoBehaviour
 
         _forwardInput.action.started += ForwardDown;
         _forwardInput.action.canceled += ForwardUp;
+
+
+        _turnInput.action.started -= TurnStart;
+        _turnInput.action.canceled -= TurnEnd;
     }
     private void UnhookInputs()
     {
@@ -58,6 +66,10 @@ public partial class ToiletController : MonoBehaviour
 
         _forwardInput.action.started -= ForwardDown;
         _forwardInput.action.canceled -= ForwardUp;
+
+
+        _turnInput.action.started -= TurnStart;
+        _turnInput.action.canceled -= TurnEnd;
     }
 
     private void Awake()
@@ -75,6 +87,14 @@ public partial class ToiletController : MonoBehaviour
         UnhookInputs();
     }
 
+    private void TurnStart(InputAction.CallbackContext context)
+    {
+        _turnStartEvent.Invoke();
+    }
+    private void TurnEnd(InputAction.CallbackContext context)
+    {
+        _turnEndEvent.Invoke();
+    }
 
     private bool IsGrounded()
     {
@@ -84,7 +104,7 @@ public partial class ToiletController : MonoBehaviour
         //return _groundCollider.
     }
 
-/*    private void Forward(InputAction.CallbackContext context)
+    /*private void Forward(InputAction.CallbackContext context)
     {
         _forwardEvent.Invoke();
 

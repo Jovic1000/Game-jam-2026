@@ -11,7 +11,7 @@ public class BasicTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_tagFilter != null && _tagFilter.Contains(other.tag))
+        if (_tagFilter != null && !_tagFilter.Contains(other.tag))
         {
             return;
         }
@@ -22,7 +22,7 @@ public class BasicTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (_tagFilter != null && _tagFilter.Contains(other.tag))
+        if (_tagFilter != null && !_tagFilter.Contains(other.tag))
         {
             return;
         }
