@@ -18,7 +18,6 @@ public class CameraController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.position = Globals.GetCurrentPlayer().transform.position;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -26,12 +25,25 @@ public class CameraController : MonoBehaviour
     {
         _cameraTransform.localPosition = Vector3.forward * -_distance;
         _pitchTransform.localPosition = Vector3.up * _heightOffset;
+        _pitch = _pitchTransform.localEulerAngles.x;
+
     }
 
-    // Update is called once per frame
-    void Update()
+// Update is called once per frame
+void Update()
     {
+        transform.position = Globals.GetCurrentPlayer().transform.position;
         CameraUpdate();
+        CameraDistance();
+    }
+
+
+    private void CameraDistance()
+    {
+        if (Physics.Raycast(_pitchTransform.position, -_pitchTransform.forward, out RaycastHit hit, _distance))
+        {
+            _cameraTransform.localPosition = Vector3.forward * -hit.distance;
+        }
     }
 
     private void CameraUpdate()

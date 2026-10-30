@@ -7,7 +7,7 @@ public class Boot : MonoBehaviour
 {
     static Boot _instance;
 
-    public string _loadingScreenName;
+    public static string _loadingScreenName;
 
 
     async void Awake()
@@ -24,11 +24,16 @@ public class Boot : MonoBehaviour
         #endregion
     }
 
-    public async void LoadSceneWithLoadingScene(string SceneToLoad, LoadSceneMode loadSceneMode = LoadSceneMode.Additive)
+    public static async void LoadSceneWithLoadingScene(string SceneToLoad, LoadSceneMode loadSceneMode = LoadSceneMode.Additive)
     {
         await SceneManager.LoadSceneAsync(_loadingScreenName, loadSceneMode);
         var loadingScene = SceneManager.GetSceneByName(_loadingScreenName);
 
 
+    }
+
+    public static void LoadScene(string SceneToLoad, LoadSceneMode loadSceneMode = LoadSceneMode.Additive)
+    {
+        SceneManager.LoadScene(SceneToLoad, loadSceneMode);
     }
 }
