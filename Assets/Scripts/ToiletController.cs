@@ -28,6 +28,7 @@ public partial class ToiletController : MonoBehaviour
     [SerializeField] private InputActionReference _turnInput;
     [SerializeField] private InputActionReference _resetRotationInput;
 
+    public float _soulPickupRange = 12.5f;
 
     [Header("Events")]
     [SerializeField] private UnityEvent _forwardEvent;
