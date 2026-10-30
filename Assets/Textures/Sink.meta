@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: f2343b38d97d062478fdc27b75a94bde
+=======
+guid: 33ac7c4c53718534081daae2f668387b
+>>>>>>> origin/SBot
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
