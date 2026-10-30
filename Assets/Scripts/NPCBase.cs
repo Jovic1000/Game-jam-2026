@@ -61,12 +61,19 @@ public class NPCBase : MonoBehaviour
         // Add code for other colldiers
     }
 
-
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Kill();
+        }
+    }
 
 
     public void Kill()
     {
-
+        // Kill Stuff
+        print("kill");
     }
 
 
