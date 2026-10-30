@@ -5,11 +5,10 @@ using UnityEngine.Events;
 public class Soul : MonoBehaviour
 {
     [SerializeField] private UnityEvent _collectEvent;
-    [SerializeField] private Collider _collider;
-
+    private bool _collected = false;
     public void Collect()
     {
-        _collider.enabled = false;
+        _collected = false;
         _collectEvent.Invoke();
     }    
 
@@ -42,5 +41,14 @@ public class Soul : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         gameObject.SetActive(false);
+    }
+
+
+    private void FixedUpdate()
+    {
+        if ((Vector3.Distance(transform.position, Globals.GetCurrentPlayer().transform.position) < Globals.GetCurrentPlayer().GetComponent<ToiletController>()._soulPickupRange) && !_collected)
+        {
+            Collect();
+        }
     }
 }
