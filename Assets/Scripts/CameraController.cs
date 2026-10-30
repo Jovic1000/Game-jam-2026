@@ -25,10 +25,12 @@ public class CameraController : MonoBehaviour
     {
         _cameraTransform.localPosition = Vector3.forward * -_distance;
         _pitchTransform.localPosition = Vector3.up * _heightOffset;
+        _pitch = _pitchTransform.localEulerAngles.x;
+
     }
 
-    // Update is called once per frame
-    void Update()
+// Update is called once per frame
+void Update()
     {
         transform.position = Globals.GetCurrentPlayer().transform.position;
         CameraUpdate();
