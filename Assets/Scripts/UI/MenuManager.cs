@@ -108,7 +108,26 @@ public class MenuManager : MonoBehaviour
         Time.timeScale = speed;
     }
 
+    // Temp Mouse Management
+    public void MouseFree()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
 
+    public void MouseConfined()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
+    public void MouseLocked()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void MouseState(CursorLockMode state)
+    {
+        Cursor.lockState = state;
+    }
 
     /*// Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
