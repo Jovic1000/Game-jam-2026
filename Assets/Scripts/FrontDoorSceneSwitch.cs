@@ -7,4 +7,6 @@ public class FrontDoorSceneSwitch : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+
 }
