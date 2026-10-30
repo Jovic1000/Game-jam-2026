@@ -18,7 +18,6 @@ public class CameraController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.position = Globals.GetCurrentPlayer().transform.position;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -31,6 +30,7 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.position = Globals.GetCurrentPlayer().transform.position;
         CameraUpdate();
     }
 
