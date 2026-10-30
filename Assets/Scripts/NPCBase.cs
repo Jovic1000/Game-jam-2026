@@ -45,11 +45,26 @@ public class NPCBase : MonoBehaviour
     {
         Vector3 runDirection = (transform.position - player.transform.position).normalized;
 
-        SetTarget(transform.position + (runDirection * _runDistance));
+        SetTarget(transform.position + (runDirection * _stats.runDistance));
     }
 
 
     public void Init()
+    {
+        _agent.speed = _stats.moveSpeed;
+
+        if (_detectionCollider.GetType() == typeof(SphereCollider))
+        {
+            SphereCollider sc = (SphereCollider)_detectionCollider;
+            sc.radius = _stats.detectionRadius;
+        }
+        // Add code for other colldiers
+    }
+
+
+
+
+    public void Kill()
     {
 
     }
@@ -58,7 +73,7 @@ public class NPCBase : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        Init();
     }
 
 
