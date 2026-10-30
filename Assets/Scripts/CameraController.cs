@@ -44,6 +44,10 @@ void Update()
         {
             _cameraTransform.localPosition = Vector3.forward * -hit.distance;
         }
+        else
+        {
+            _cameraTransform.localPosition = Vector3.forward * -_distance;
+        }
     }
 
     private void CameraUpdate()

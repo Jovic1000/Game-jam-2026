@@ -5,6 +5,8 @@ public class NPCSpawner : MonoBehaviour
     [SerializeField] private NPCStats _stats;
     [SerializeField] private GameObject _npcPrefab;
 
+    public bool _spawnAtStart = true;
+
 /*    public void SpawnNPCStats()
     {
         SpawnNPCStats(_stats);
@@ -21,4 +23,8 @@ public class NPCSpawner : MonoBehaviour
         GameObject npc = Instantiate(prefab);
     }
 
+    private void Start()
+    {
+        if (_spawnAtStart) SpawnNPC(_npcPrefab);
+    }
 }

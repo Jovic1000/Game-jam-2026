@@ -1,2 +1,13 @@
 fileFormatVersion: 2
 guid: 29593e66a4f9ad34a8ff12df5ec9a81c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _stats: {fileID: 11400000, guid: b99fbe6da8dde264681c88a2f244799b, type: 2}
+  - _npcPrefab: {fileID: 5906688305660284729, guid: 99acb72c6dd57b6419dbe6ab358f1118, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
