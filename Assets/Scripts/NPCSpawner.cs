@@ -21,6 +21,7 @@ public class NPCSpawner : MonoBehaviour
     public void SpawnNPC(GameObject prefab)
     {
         GameObject npc = Instantiate(prefab);
+        npc.transform.position = transform.position;
     }
 
     private void Start()
