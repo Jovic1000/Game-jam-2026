@@ -12,6 +12,8 @@ public partial class ToiletController : MonoBehaviour
 
     [Header("Player Settings")]
     [SerializeField] private float _jumpForce = 8f;
+    [SerializeField] private Vector2 _jumpForceLimits = new Vector2(250f, 800f);
+    [SerializeField] private float _jumpForceMaxTime = 1.4f;
     [SerializeField] private Transform _jumpDirection;
 
     [SerializeField] private float _turnSpeed = 10f;
@@ -33,17 +35,28 @@ public partial class ToiletController : MonoBehaviour
     [SerializeField] private UnityEvent _forwardEvent;
     [SerializeField] private UnityEvent _resetRotationEvent;
 
+    private bool _forwardDown;
+    private float _forwardDownTime;
+
     private void HookInputs()
     {
-        _forwardInput.action.performed += Forward;
+        //_forwardInput.action.performed += Forward;
         //_turnInput.action.performed += Turn;
         _resetRotationInput.action.performed += ResetRotation;
+
+
+        _forwardInput.action.started += ForwardDown;
+        _forwardInput.action.canceled += ForwardUp;
     }
     private void UnhookInputs()
     {
-        _forwardInput.action.performed -= Forward;
+        //_forwardInput.action.performed -= Forward;
         //_turnInput.action.performed -= Turn;
         _resetRotationInput.action.performed -= ResetRotation;
+
+
+        _forwardInput.action.started -= ForwardDown;
+        _forwardInput.action.canceled -= ForwardUp;
     }
 
     private void Awake()
@@ -70,13 +83,42 @@ public partial class ToiletController : MonoBehaviour
         //return _groundCollider.
     }
 
-    private void Forward(InputAction.CallbackContext context)
+/*    private void Forward(InputAction.CallbackContext context)
     {
         _forwardEvent.Invoke();
 
         if (!IsGrounded()) return;
         _rigidbody.AddForce(_jumpForce * _jumpDirection.forward, ForceMode.Impulse);
+    }*/
+
+    private void Forward()
+    {
+        _forwardEvent.Invoke();
+
+
+
+        float jumpForce = Mathf.Lerp(_jumpForceLimits.x, _jumpForceLimits.y, Mathf.Clamp01(_forwardDownTime / _jumpForceMaxTime));
+            
+        print(jumpForce);
+
+        if (!IsGrounded()) return;
+        _rigidbody.AddForce(jumpForce * _jumpDirection.forward, ForceMode.Impulse);
     }
+
+    private void ForwardDown(InputAction.CallbackContext context)
+    {
+        _forwardDown = true;
+        _forwardDownTime = 0;
+    }
+
+    private void ForwardUp(InputAction.CallbackContext context)
+    {
+        _forwardDown = false;
+
+        Forward();
+    }
+
+
 
     private void ResetRotation(InputAction.CallbackContext context)
     {
@@ -116,6 +158,14 @@ public partial class ToiletController : MonoBehaviour
     void Start()
     {
 
+    }
+
+    private void Update()
+    {
+        if (_forwardDown)
+        {
+            _forwardDownTime += Time.deltaTime;
+        }
     }
 
     // Update is called once per frame

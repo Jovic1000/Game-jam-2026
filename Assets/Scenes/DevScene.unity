@@ -368,6 +368,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 198058146750206255, guid: 9d9160d55fe71ce4c921fb3b493d3a85, type: 3}
+      propertyPath: _jumpForceMaxTime
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 198058146750206255, guid: 9d9160d55fe71ce4c921fb3b493d3a85, type: 3}
+      propertyPath: _jumpForceLimits.x
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 198058146750206255, guid: 9d9160d55fe71ce4c921fb3b493d3a85, type: 3}
+      propertyPath: _jumpForceLimits.y
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 198058146750206255, guid: 9d9160d55fe71ce4c921fb3b493d3a85, type: 3}
       propertyPath: _resetRotationEvent.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
