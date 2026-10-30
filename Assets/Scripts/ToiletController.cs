@@ -33,6 +33,7 @@ public partial class ToiletController : MonoBehaviour
 
     [Header("Events")]
     [SerializeField] private UnityEvent _forwardEvent;
+    [SerializeField] private UnityEvent _turnEvent;
     [SerializeField] private UnityEvent _resetRotationEvent;
 
     private bool _forwardDown;
@@ -132,6 +133,11 @@ public partial class ToiletController : MonoBehaviour
     {
         //float value = context.ReadValue<float>();
         float value = _turnInput.action.ReadValue<float>();
+
+        if (value != 0)
+        {
+            _turnEvent.Invoke();
+        }
 
         float turnAmount = value * _turnSpeed * Time.deltaTime;
 
