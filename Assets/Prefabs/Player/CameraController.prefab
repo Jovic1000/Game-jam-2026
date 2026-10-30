@@ -220,4 +220,4 @@ MonoBehaviour:
   _sensitivity: 1
   _cameraMoveAxis: {fileID: 2947609004209510148, guid: 6b4057318543ee74e90cb53d5322023f, type: 3}
   _pitchTransform: {fileID: 542640033814125798}
-  _cameraTransform: {fileID: 7948132247813182376}
+  _cameraTransform: {fileID: 1782856833273533081}
